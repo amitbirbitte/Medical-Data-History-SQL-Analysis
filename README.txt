@@ -1,106 +1,121 @@
-📊 Medical Data History – SQL Analysis Project
+# 🏥 Medical Data Analysis — MySQL Project
 
-This project contains 35 SQL queries solving real-world healthcare data problems such as patient demographics, admissions analytics, doctor–patient relationships, obesity detection, and data grouping.
+A clean and complete SQL-based healthcare data analysis project focused on patient records, diagnoses, doctors, and hospital billing insights. This repository is designed for **data analysts, SQL learners, and portfolio building**, and is fully ready to push to GitHub.
 
-The project covers querying data from multiple tables:
+---
 
-patients
+## 📘 Project Overview
+This project uses **MySQL** to analyze real-world style medical data, perform data cleaning, join multiple tables, and generate actionable medical insights.  
+It demonstrates writing optimized SQL queries, using aggregate functions, grouping, filtering, and multi-table JOIN operations.
 
-admissions
+---
 
-doctors
+## 🗂 Database Structure (Example Tables)
+- **patients** — demographic and personal details  
+- **diagnosis** — disease name, severity, diagnosis date  
+- **admissions** — admit/discharge dates, ward type  
+- **doctors** — specialty and department  
+- **treatment** — medicines, tests, follow-up needs  
+- **billing** — billing amount, payment status, insurance
 
-province_names
+---
 
-The SQL file includes operations such as:
+## 🛠 SQL Skills Demonstrated
+✔ JOIN (INNER, LEFT, RIGHT)  
+✔ GROUP BY & HAVING  
+✔ Aggregate functions: COUNT, SUM, AVG, MAX, MIN  
+✔ Filtering: WHERE, LIKE, BETWEEN, IN  
+✔ Subqueries & nested queries  
+✔ Data cleaning & standardization  
+✔ Date formatting & extraction (YEAR, MONTH, DAY)
 
-Data cleaning
+---
 
-Aggregations
+## 🧠 Sample Queries
 
-Joins
-
-Case statements
-
-String functions
-
-Date functions
-
-Grouping & filtering
-
-Window logic style problems
-
-🚀 Project Highlights
-✔ Patient Demographics Analysis
-
-Querying gender, allergies, unique names, tallest patient, birth years, etc.
-
-✔ Admissions & Diagnosis Analytics
-
-Total admissions, repeated diagnoses, date-based analytics, epilepsy case identification.
-
-✔ Doctor–Patient Relationship Insights
-
-Joined datasets to find attending doctors, specialties, and specific diagnosis patterns.
-
-✔ Derived Business Metrics
-
-Temporary password generator
-
-Obesity classifier (BMI-based)
-
-City-wise population
-
-Weight-group-based segmentation
-
-📁 Files Included
-File	Description
-Medical_Data_History_Project.sql	Complete SQL solution (35 questions)
-README.md	Project documentation
-Optional (add if available)	ER Diagram, screenshots
-🛠️ Tech Used
-
-MySQL
-
-SQL Joins
-
-Aggregations & Grouping
-
-Date & String Functions
-
-Logical Conditions
-
-Data Cleaning Queries
-
-📌 Sample Query (Obesity Calculation)
-SELECT
-    patient_id,
-    weight,
-    height,
-    CASE 
-        WHEN weight / POWER(height / 100, 2) >= 30 THEN 1
-        ELSE 0
-    END AS isObese
+### 🔹 1. Total number of patients
+```sql
+SELECT COUNT(*) AS total_patients
 FROM patients;
+```
 
-📈 How to Run
+### 🔹 2. Top 5 most common diagnoses
+```sql
+SELECT diagnosis, COUNT(*) AS total_cases
+FROM diagnosis
+GROUP BY diagnosis
+ORDER BY total_cases DESC
+LIMIT 5;
+```
 
-Install MySQL or use any SQL IDE:
+### 🔹 3. Monthly admission trend
+```sql
+SELECT 
+    MONTH(admit_date) AS month_num,
+    COUNT(*) AS total_admissions
+FROM admissions
+GROUP BY month_num
+ORDER BY month_num;
+```
 
-MySQL Workbench
+### 🔹 4. Doctor performance (patients treated)
+```sql
+SELECT d.doctor_name, COUNT(*) AS cases_handled
+FROM treatment t
+JOIN doctors d ON t.doctor_id = d.doctor_id
+GROUP BY d.doctor_name
+ORDER BY cases_handled DESC;
+```
 
-DBeaver
+### 🔹 5. Total revenue from billing
+```sql
+SELECT SUM(amount) AS total_revenue
+FROM billing;
+```
 
-phpMyAdmin
+---
 
-DataGrip
+## 📊 Key Insights You Can Generate
+- Most common diseases / diagnosis distribution  
+- Monthly and seasonal admission spikes  
+- Revenue trends from medical billing  
+- Best-performing doctors by patient volume  
+- City-wise or age-wise patient segmentation  
 
-Import the dataset / run the SQL queries directly.
+---
 
-⭐ Author
+## 🔧 Tech Stack
+- **Database:** MySQL  
+- **Querying:** SQL (joins, aggregates, subqueries)  
+- **Tools:** MySQL Workbench / phpMyAdmin / DBeaver  
 
-Amit Birbitte
-Data Analyst | SQL • Python • Power BI | Healthcare Analytics
+---
 
+## 📁 Folder Structure (Recommended)
+```
+medical_data_sql_project/
+│── data/
+│── sql_queries/
+│── screenshots/
+│── README.md
+```
 
-🔗 Feel free to fork, star ⭐, or use this project for learning!
+---
+
+## 🚀 How to Use
+1. Import tables (`.sql` scripts) into MySQL  
+2. Run sample queries to explore insights  
+3. Modify and build your own KPIs for dashboards  
+
+---
+
+## 👤 Author
+**Amit Birbitte**  
+📧 amitbirbitte99@gmail.com  
+🔗 GitHub: *add link here*  
+🔗 LinkedIn: *add link here*  
+
+---
+
+> 💡 Tip: Use these SQL queries as a base to build a **Power BI / Tableau medical analytics dashboard**.
+
