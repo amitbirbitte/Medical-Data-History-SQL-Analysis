@@ -112,8 +112,7 @@ medical_data_sql_project/
 ## 👤 Author
 **Amit Birbitte**  
 📧 amitbirbitte99@gmail.com  
-🔗 GitHub: *add link here*  
-🔗 LinkedIn: *add link here*  
+🔗 LinkedIn: https://www.linkedin.com/in/amit-birbitte-499657260/ 
 
 ---
 
